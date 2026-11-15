@@ -9,7 +9,10 @@ public class Convolution {
     public Convolution(BufferedImage image){
         this.image = image;
     }
-    public BufferedImage apply(int[][] matrix) throws Exception {
+    /*
+    * APplca la convoluzione ritornando l'array RGB
+     */
+    public int[] apply(int[][] matrix) throws Exception {
         var length = matrix.length;
         if (matrix[0].length!= length)
             throw new Exception("Il kernel deve essere quadrato!");
@@ -22,9 +25,7 @@ public class Convolution {
             int newVal = applyKernel(map,matrix);
             rgb[i] = newVal;
         }
-        BufferedImage buffered = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_GRAY);
-        buffered.setRGB(0, 0, width, height, rgb, 0, width);
-        return buffered;
+        return rgb;
     }
 
     private int[][] getMap(int i,int width,int height,int kernelLenght,int[] rgb) {
